@@ -1,0 +1,33 @@
+{
+    "info": {
+      "name": "CrediKhaata",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Register",
+        "request": {
+          "method": "POST",
+          "header": [{ "key": "Content-Type", "value": "application/json" }],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n    \"name\": \"Test User\",\n    \"email\": \"test@example.com\",\n    \"password\": \"123456\"\n}"
+          },
+          "url": { "raw": "http://localhost:5000/api/auth/register", "host": ["localhost:5000"], "path": ["api", "auth", "register"] }
+        }
+      },
+      {
+        "name": "Login",
+        "request": {
+          "method": "POST",
+          "header": [{ "key": "Content-Type", "value": "application/json" }],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n    \"email\": \"test@example.com\",\n    \"password\": \"123456\"\n}"
+          },
+          "url": { "raw": "http://localhost:5000/api/auth/login", "host": ["localhost:5000"], "path": ["api", "auth", "login"] }
+        }
+      }
+    ]
+  }
+  

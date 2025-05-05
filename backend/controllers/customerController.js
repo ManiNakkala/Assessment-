@@ -1,0 +1,32 @@
+const Customer = require('../models/Customer');
+
+exports.addCustomer = async (req, res) => {
+  try {
+    const customer = new Customer({ ...req.body, shopkeeperId: req.user._id });
+    await customer.save();
+    res.status(201).json(customer);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
+exports.getCustomers = async (req, res) => {
+  const customers = await Customer.find({ shopkeeperId: req.user._id });
+  res.json(customers);
+};
+
+exports.updateCustomer = async (req, res) => {
+  const { id } = req.params;
+  const customer = await Customer.findOneAndUpdate(
+    { _id: id, shopkeeperId: req.user._id },
+    req.body,
+    { new: true }
+  );
+  res.json(customer);
+};
+
+exports.deleteCustomer = async (req, res) => {
+  const { id } = req.params;
+  await Customer.findOneAndDelete({ _id: id, shopkeeperId: req.user._id });
+  res.json({ message: 'Customer deleted' });
+};
